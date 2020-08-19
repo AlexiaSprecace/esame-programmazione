@@ -13,43 +13,53 @@ import java.io.FileReader;
 
 import java.net.URLConnection;
 import java.net.URL;
+import java.net.HttpURLConnection;
 
 import java.util.Scanner;
 
 public class getJSONFromURL {
 	String url = "https://api.dropboxapi.com/2/sharing/list_shared_links?authorization=Bearer ";
 	String tokenFile = "token.txt";
-	String data="";
-	String line="";
-	try {
+	String data = "";
+	String line = "";
+	JSONArray json=null;
+	public JSONArray getJSONfromURL() {
+	//Read the token from token.txt and append it to the URL
+	try{
 		Scanner in = new Scanner(new BufferedReader(new FileReader(tokenFile)));
-		while(in.hasNext()) {
+		while (in.hasNext()) {
 			url += in.next();
 		}
+		System.out.println(url);
 		in.close();
-	}
-	catch(IOException e) {
+	}catch(
+	IOException e)
+	{
+		System.out.println("Error generating the URL!");
 		e.printStackTrace();
 	}
+	
 	try {
-		URLConnection oC = new URL(url).openConnection();
-		InputStream inp = oC.getInputStream();
+		
+		URLConnection openConnection = new URL(url).openConnection();
+		openConnection.addRequestProperty("User-Agent",	"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
+		InputStream inp = openConnection.getInputStream();
 		try {
-			InputStreamReader inputReader = new InputStreamReader(inp);
-			BufferedReader buff = new BufferedReader(inputReader);
+			
+			BufferedReader buff = new BufferedReader(new InputStreamReader(inp, "UTF-8"));
 			
 			while((line=buff.readLine()) != null) {
-				data+=line;
+				data += line;
 			}
 		}
 		catch(Exception e) {
+			System.out.println("Error!!");
 			e.printStackTrace();
 		}
 		finally {
 			inp.close();
 		}
 		System.out.println(data);
-		JSONArray json=null;
 		try {
 			json = (JSONArray)JSONValue.parseWithException(data);
 		}
@@ -57,5 +67,12 @@ public class getJSONFromURL {
 			System.out.println ("Parsing error!");
 			e.printStackTrace();
 		}
+	}
+	catch(Exception e) {
+		System.out.println("Error!");
+		e.printStackTrace();
+	}
+	System.out.println(json);
+	return json;
 	}
 }
