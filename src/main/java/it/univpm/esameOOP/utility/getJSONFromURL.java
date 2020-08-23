@@ -12,11 +12,12 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 
 public class getJSONFromURL {
-	String url = "https://api.dropboxapi.com/2/sharing/list_shared_links";
-	String jsonString = "";
-	String line = "";
-	JSONObject json=null;
-	public JSONObject getJSON() {
+	public static JSONObject getJSON() {
+		
+		String url = "https://api.dropboxapi.com/2/sharing/list_shared_links";
+		String jsonString = "";
+		String line = "";
+		JSONObject json=null;
 		
 	try {
 		

@@ -47,6 +47,6 @@ public class SharedFile {
 	
 	@Override
 	public String toString() {
-		return "The file is a " + type + " named " + name + " which can be found in " + path;
+		return "The file is a " + type + " named " + name + " which can be found in " + path +"\n";
 	}
 }
