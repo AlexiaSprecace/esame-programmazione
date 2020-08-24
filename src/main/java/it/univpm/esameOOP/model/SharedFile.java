@@ -1,23 +1,29 @@
 package it.univpm.esameOOP.model;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class SharedFile {
 	private String name;
 	private String extension;
 	private String type;
-	private String path;
+	private Path path;
+	private String tag;
 	
 	public SharedFile() {
 		this.name=null;
 		this.extension=null;
 		this.type=null;
 		this.path=null;
+		this.tag = null;
 	}
 	
-	public SharedFile(String name, String extension, String type, String path) {
+	public SharedFile(String name, String extension, String type, String path, String tag) {
 		this.name = name;
 		this.extension = extension;
 		this.type = type;
-		this.path = path;
+		this.path = Paths.get(path);
+		this.tag = tag;
 	}
 	
 	public String getName() {
@@ -38,15 +44,22 @@ public class SharedFile {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getPath() {
+	public Path getPath() {
 		return path;
 	}
 	public void setPath(String path) {
-		this.path = path;
+		this.path = Paths.get(path);
+	}
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 	
 	@Override
 	public String toString() {
-		return "The file is a " + type + " named " + name + " which can be found in " + path +"\n";
+		return "Name: " + name + "\nType: " + type + "\nPath: " + path.toString() + "\n\n";
 	}
 }
