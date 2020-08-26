@@ -12,18 +12,18 @@ import it.univpm.esameOOP.model.SharedFile;
 
 public class getFileFromJSON {
 		
-		public static ArrayList<SharedFile> getFile() {
+		public static ArrayList<SharedFile> getFile() {	//senza parametri => api shared_links
 			JSONArray array=new JSONArray();
 			array = (JSONArray)getJSONFromURL.getJSON().get("links");
-			return getSharedFiles(array);
+			return getSharedFiles(array, 1);
 		}
 		
-		public static ArrayList<SharedFile> getFile(Path folderName){
+		public static ArrayList<SharedFile> getFile(Path folderName){	//con parametri => api list_folder
 			JSONArray array = (JSONArray)getJSONFromURL.getJSON(folderName).get("entries");
-			return getSharedFiles(array);
+			return getSharedFiles(array, 2);
 		}
 		
-		private static ArrayList<SharedFile> getSharedFiles(JSONArray array){
+		private static ArrayList<SharedFile> getSharedFiles(JSONArray array, int api){
 			ArrayList<SharedFile> sharedLinks = new ArrayList<SharedFile>();
 			
 			
@@ -39,10 +39,15 @@ public class getFileFromJSON {
 				file.setTag((String)obj.get(".tag"));
 				if(file.getTag().equals("folder")) {
 					file.setExtension("none (folder)");
-					file.setType("folder");
+					if(api==1)
+						file.setType("folder");
+					else if(api==2)
+						file.setType("sub-folder");
 				}
 				else {
 				file.setType((String)obj.get("preview_type"));
+				if(file.getType() == null)
+					file.setType("Not supported");
 				String name = file.getName();
 				if ( name.lastIndexOf(".") >= 0)
 					file.setExtension(name.substring(name.lastIndexOf(".")));

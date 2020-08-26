@@ -17,13 +17,16 @@ public class AllPublicFiles {
 		while (it.hasNext()) {
 			 SharedFile file = new SharedFile();
 			 file = (SharedFile)it.next();
+			 if(file.getType() == null)
+				 file.setType("Not supported");
 			 if (file.getTag().equals("folder")) {
-				 //file.setExtension("none (folder");
-				 //file.setType("folder");
-				 temp.addAll(getFileFromJSON.getFile(file.getPath()));
+				 ArrayList<SharedFile> temp2 = getFileFromJSON.getFile(file.getPath());
+				 temp2.remove(0);	//rimuove il primo elemento (la cartella su cui chiamo list_folder)
+				 temp.addAll(temp2);
 			 }
 		}
 		sharedFiles.addAll(temp);
+		
 		System.out.println(sharedFiles);
 		return sharedFiles;
 	}
