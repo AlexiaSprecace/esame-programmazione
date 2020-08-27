@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.univpm.esameOOP.service.AllPublicFiles;
+import it.univpm.esameOOP.service.StatsOnSubFolder;
 import it.univpm.esameOOP.service.StatsOnType;
 import it.univpm.esameOOP.model.SharedFile;
 import java.util.ArrayList;
@@ -21,5 +22,11 @@ public class Controller {
 	public ResponseEntity<Object> getStatsOnType(){
 		ArrayList<SharedFile> files = AllPublicFiles.getAllFiles();
 		return new ResponseEntity<>(StatsOnType.getStatsOnType(files), HttpStatus.OK);
+	}
+	
+	@GetMapping("/stats/folder")
+	public ResponseEntity<Object> getStatsOnFolder(){
+		ArrayList<SharedFile> files = AllPublicFiles.getAllFiles();
+		return new ResponseEntity<>(StatsOnSubFolder.getStatsOnFolder(files), HttpStatus.OK);
 	}
 }

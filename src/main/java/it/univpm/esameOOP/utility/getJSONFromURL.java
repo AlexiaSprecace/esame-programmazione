@@ -15,7 +15,7 @@ import java.net.HttpURLConnection;
 
 public class getJSONFromURL {
 	
-	public static JSONObject getJSON(Path folderName) {
+	public static JSONObject getJSON(Path folderName) {	//con parametro chiama la seconda api
 		String url="https://api.dropboxapi.com/2/files/list_folder";
 		JSONObject json=new JSONObject();
 		
@@ -40,7 +40,7 @@ public class getJSONFromURL {
 		return json;
 	}	
 	
-	public static JSONObject getJSON() {
+	public static JSONObject getJSON() {	//senza parametri chiama la prima api
 		JSONObject json=new JSONObject();
 		String url = "https://api.dropboxapi.com/2/sharing/list_shared_links";
 
@@ -58,7 +58,7 @@ public class getJSONFromURL {
 	return json;
 	}
 	
-	private static JSONObject JSONSave(HttpURLConnection urlConnection, JSONObject json) {
+	private static JSONObject JSONSave(HttpURLConnection urlConnection, JSONObject json) {	//metodo comune
 		String jsonString = "";
 		String line = "";
 		
@@ -93,6 +93,6 @@ public class getJSONFromURL {
 		System.out.println("Error!");
 		e.printStackTrace();
 	}
-	return json;
+	return json;	//ritorna il jsonobject restituito dalla api
 	}
 }

@@ -27,7 +27,7 @@ public class AllPublicFiles {
 		}
 		sharedFiles.addAll(temp);
 		
-		System.out.println(sharedFiles);
+		//System.out.println(sharedFiles);
 		return sharedFiles;
 	}
 	
