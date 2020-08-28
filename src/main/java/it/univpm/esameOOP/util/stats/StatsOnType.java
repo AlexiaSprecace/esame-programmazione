@@ -1,4 +1,4 @@
-package it.univpm.esameOOP.service;
+package it.univpm.esameOOP.util.stats;
 
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.nio.file.Path;
 
 import it.univpm.esameOOP.model.SharedFile;
-import it.univpm.esameOOP.util.stats.FileType;
+import it.univpm.esameOOP.utility.FileType;
 
 public class StatsOnType {
 	

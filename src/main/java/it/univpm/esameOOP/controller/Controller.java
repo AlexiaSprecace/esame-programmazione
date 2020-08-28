@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.univpm.esameOOP.service.AllPublicFiles;
-import it.univpm.esameOOP.service.StatsOnSubFolder;
-import it.univpm.esameOOP.service.StatsOnType;
+import it.univpm.esameOOP.util.stats.StatsOnSubFolder;
+import it.univpm.esameOOP.util.stats.StatsOnType;
 import it.univpm.esameOOP.model.SharedFile;
 import java.util.ArrayList;
 
