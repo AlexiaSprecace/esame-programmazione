@@ -10,16 +10,16 @@ import java.util.Iterator;
 import it.univpm.esameOOP.model.SharedFile;
 
 
-public class getFileFromJSON {
+public class GetFileFromJSON {
 		
 		public static ArrayList<SharedFile> getFile() {	//withour parameters => api shared_links
 			JSONArray array=new JSONArray();
-			array = (JSONArray)getJSONFromURL.getJSON().get("links");
+			array = (JSONArray)GetJSONFromURL.getJSON().get("links");
 			return getSharedFiles(array, 1);
 		}
 		
 		public static ArrayList<SharedFile> getFile(Path folderName){	//with parameters => api list_folder
-			JSONArray array = (JSONArray)getJSONFromURL.getJSON(folderName).get("entries");
+			JSONArray array = (JSONArray)GetJSONFromURL.getJSON(folderName).get("entries");
 			return getSharedFiles(array, 2); //the integer points the used api
 		}
 		

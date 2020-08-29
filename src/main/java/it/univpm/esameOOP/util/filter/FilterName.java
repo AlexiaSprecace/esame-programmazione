@@ -4,7 +4,7 @@ import it.univpm.esameOOP.exception.IllegalParameterException;
 import it.univpm.esameOOP.model.SharedFile;
 import it.univpm.esameOOP.util.other.Filter;
 
-public class FilterName implements Filter {
+public class FilterName extends Filter {
 	private String parameter;
 	
 	public FilterName (Object parameter) {

@@ -2,8 +2,9 @@ package it.univpm.esameOOP.util.filter;
 
 import it.univpm.esameOOP.exception.IllegalParameterException;
 import it.univpm.esameOOP.model.SharedFile;
+import it.univpm.esameOOP.util.other.Filter;
 
-public class FilterExtension {
+public class FilterExtension extends Filter {
 	private String parameter;
 	
 	public FilterExtension (Object parameter) {

@@ -3,14 +3,14 @@ package it.univpm.esameOOP.service;
 import java.util.ArrayList;
 
 import it.univpm.esameOOP.model.SharedFile;
-import it.univpm.esameOOP.utility.getFileFromJSON;
+import it.univpm.esameOOP.utility.GetFileFromJSON;
 import java.util.Iterator;
 
 public class AllPublicFiles {
 	
 	public static ArrayList<SharedFile> getAllFiles(){
 		ArrayList<SharedFile> sharedFiles = new ArrayList<>();
-		sharedFiles = getFileFromJSON.getFile();
+		sharedFiles = GetFileFromJSON.getFile();
 		ArrayList<SharedFile> temp = new ArrayList<>();
 		
 		Iterator<?> it = sharedFiles.iterator();
@@ -20,7 +20,7 @@ public class AllPublicFiles {
 			 if(file.getType() == null)
 				 file.setType("Not supported");
 			 if (file.getTag().equals("folder")) {
-				 ArrayList<SharedFile> temp2 = getFileFromJSON.getFile(file.getPath());
+				 ArrayList<SharedFile> temp2 = GetFileFromJSON.getFile(file.getPath());
 				 temp2.remove(0);	//rimuove il primo elemento (la cartella su cui chiamo list_folder)
 				 temp.addAll(temp2);
 			 }

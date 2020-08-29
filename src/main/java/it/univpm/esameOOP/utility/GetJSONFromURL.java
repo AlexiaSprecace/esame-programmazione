@@ -13,7 +13,7 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.net.HttpURLConnection;
 
-public class getJSONFromURL {
+public class GetJSONFromURL {
 	
 	public static JSONObject getJSON(Path folderName) {	//con parametro chiama la seconda api
 		String url="https://api.dropboxapi.com/2/files/list_folder";
