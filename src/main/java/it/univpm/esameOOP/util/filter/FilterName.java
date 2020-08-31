@@ -14,7 +14,7 @@ public class FilterName extends Filter {
 		}
 	
 	public boolean doFilter (SharedFile file) {
-		if (file.getName().equals(parameter))
+		if (file.getPath().toString().toLowerCase().contains(parameter.toLowerCase()))
 			return true;
 		else return false;
 	}

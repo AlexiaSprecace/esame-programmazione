@@ -54,6 +54,7 @@ public class GetFileFromJSON {
 				String name = file.getName();
 				if ( name.lastIndexOf(".") >= 0)
 					file.setExtension(name.substring(name.lastIndexOf(".")));
+				else file.setExtension("Unknown");
 				}
 				sharedLinks.add(file);
 			}
