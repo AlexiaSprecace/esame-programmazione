@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import it.univpm.esameOOP.exception.IllegalBodyException;
 import it.univpm.esameOOP.exception.IllegalParameterException;
 import it.univpm.esameOOP.model.SharedFile;
 import it.univpm.esameOOP.util.filter.FilterExtension;
@@ -17,7 +18,7 @@ import it.univpm.esameOOP.util.other.Filter;
 
 public class FilterManager {
 	
-	public static ArrayList<SharedFile> filterManager(JSONObject filterBody) {
+	public static ArrayList<SharedFile> filterManager(JSONObject filterBody) throws IllegalParameterException, IllegalBodyException {
 		ArrayList<SharedFile> rawData = AllPublicFiles.getAllFiles();
 		ArrayList<SharedFile> filteredData = new ArrayList<>();
 		ArrayList<String> filterParameters;

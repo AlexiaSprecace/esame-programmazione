@@ -12,6 +12,8 @@ import it.univpm.esameOOP.service.AllPublicFiles;
 import it.univpm.esameOOP.service.FilterManager;
 import it.univpm.esameOOP.util.stats.StatsOnSubFolder;
 import it.univpm.esameOOP.util.stats.StatsOnType;
+import it.univpm.esameOOP.exception.IllegalBodyException;
+import it.univpm.esameOOP.exception.IllegalParameterException;
 import it.univpm.esameOOP.model.SharedFile;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +38,16 @@ public class Controller {
 	}
 	
 	@PostMapping("/data")
-	public ResponseEntity<Object> getFilteredData(@RequestBody JSONObject filter){
+	public ResponseEntity<Object> getFilteredData(@RequestBody JSONObject filter) throws IllegalParameterException, IllegalBodyException{
 		return new ResponseEntity<>(FilterManager.filterManager(filter), HttpStatus.OK);
 	}
+	@PostMapping("/stats/type")
+	public ResponseEntity<Object> getStatsOnType(@RequestBody JSONObject filter) throws IllegalParameterException, IllegalBodyException{
+		return new ResponseEntity<>(StatsOnType.getStatsOnType(FilterManager.filterManager(filter)), HttpStatus.OK);
+	}
+	@PostMapping("/stats/folder")
+	public ResponseEntity<Object> getStatsOnFolder(@RequestBody JSONObject filter) throws IllegalParameterException, IllegalBodyException{
+		return new ResponseEntity<>(StatsOnSubFolder.getStatsOnFolder(FilterManager.filterManager(filter)), HttpStatus.OK);
+	}
+	
 }
