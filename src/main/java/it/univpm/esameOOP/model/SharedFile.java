@@ -104,13 +104,17 @@ public class SharedFile {
 		this.shared = shared;
 	}
 	
+	/**
+	 * Override of the toString method
+	 */
 	@Override
 	public String toString() {
 		return "Name: " + name + "\nType: " + type + "\nPath: " + path.toString() + "\nShared:" +shared+ "\n\n";
 	}
 
-	
-
+	/**
+	 * Override of the equals method
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -13,26 +13,41 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.net.HttpURLConnection;
 
+/**
+ * This class opens a connection with the chosen api, reading and copying the response json in a String
+ * which gets parsed in the form of a JSONObject
+ * @author Pilone Fabrizio
+ * @author Sprecacè Alexia
+ *
+ */
 public class GetJSONFromURL {
 	
-	public static JSONObject getJSON(Path folderName) {	//con parametro chiama la seconda api
-		String url="https://api.dropboxapi.com/2/files/list_folder";
+	/**
+	 * This method gets the JSONObject from the list_folder api called on the specified path, which gives
+	 * all the files inside the folder
+	 * @param folderName path of the folder on which call the api
+	 * @return the JSONObject relative to the chosen folder
+	 */
+	public static JSONObject getJSON(Path folderName) {	//with parameter calls the second api
+		final String url="https://api.dropboxapi.com/2/files/list_folder";
 		JSONObject json=new JSONObject();
 		
 		try {
 			HttpURLConnection urlConnection = (HttpURLConnection) new URL(url).openConnection();
 			urlConnection.setRequestProperty("Content-Type", "application/json");
-			//urlConnection.setRequestProperty("Accept",  "application/json");
 			urlConnection.setRequestMethod("POST");
 			urlConnection.setRequestProperty("Authorization", "Bearer F7ARYGDyGpQAAAAAAAAAAVLCKzXKrdhTU9zzByXHePE0sP8g1XFYf059v5Fkmwxp");
 			urlConnection.addRequestProperty("User-Agent",	"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
-			urlConnection.setDoOutput(true);
+			urlConnection.setDoOutput(true); //to enable the input of body
 			String str=" {\"path\": " + "\""+ folderName.toString().replace('\\', '/') + "\""+ ", \"recursive\": " +true +"}";
-			try(OutputStream os = urlConnection.getOutputStream()){
+			try(OutputStream os = urlConnection.getOutputStream()){ //to read the body with the parameters for the api
 				byte[] input = str.getBytes("utf-8");
 				os.write(input, 0, input.length);
 			}
 			json=JSONSave(urlConnection, json);
+		}
+		catch(IOException e) {
+			e.printStackTrace();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -40,7 +55,12 @@ public class GetJSONFromURL {
 		return json;
 	}	
 	
-	public static JSONObject getJSON() {	//senza parametri chiama la prima api
+	/**
+	 * This method gets the JSONObject from the shared_links api, getting all the shared files in the
+	 * specified Dropbox account
+	 * @return the JSONObject relative to the chosen account
+	 */
+	public static JSONObject getJSON() {	//without parameters calls the second api
 		JSONObject json=new JSONObject();
 		String url = "https://api.dropboxapi.com/2/sharing/list_shared_links";
 
@@ -52,13 +72,23 @@ public class GetJSONFromURL {
 		urlConnection.addRequestProperty("User-Agent",	"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
 		json=JSONSave(urlConnection, json);
 		}
+	catch(IOException e) {
+		e.printStackTrace();
+	}
 	catch(Exception e) {
 		e.printStackTrace();
 	}
 	return json;
 	}
 	
-	private static JSONObject JSONSave(HttpURLConnection urlConnection, JSONObject json) {	//metodo comune
+	/**
+	 * This method gets the HttpURLConnection object created by the getJSON methods, reads what's inside it
+	 * and then copies it inside a string which can be parsed inside a JSONObject
+	 * @param urlConnection the HttpURLConnection created by getJSON
+	 * @param json the JSONObject in which save the JSON
+	 * @return the updated JSONObject
+	 */
+	private static JSONObject JSONSave(HttpURLConnection urlConnection, JSONObject json) {	//common method
 		String jsonString = "";
 		String line = "";
 		
@@ -68,7 +98,7 @@ public class GetJSONFromURL {
 			
 			BufferedReader buff = new BufferedReader(new InputStreamReader(input));
 			while((line=buff.readLine()) != null) {
-				jsonString += line;
+				jsonString += line;	//saving the JSON inside jsonString
 			}
 			}
 			catch(IOException e) {
@@ -83,16 +113,16 @@ public class GetJSONFromURL {
 			e.printStackTrace();
 		}
 		try {
-			json = (JSONObject)JSONValue.parseWithException(jsonString);
+			json = (JSONObject)JSONValue.parseWithException(jsonString); //parsing jsonString inside a JSONObject
 		}
 		catch(ParseException e) {
 			System.out.println ("Parsing error!");
 			e.printStackTrace();
 		}
-	catch(Exception e) {
+		catch(Exception e) {
 		System.out.println("Error!");
 		e.printStackTrace();
-	}
-	return json;	//ritorna il jsonobject restituito dalla api
+		}
+	return json;	//returns the JSONObject got from the api
 	}
 }
