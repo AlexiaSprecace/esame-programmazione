@@ -21,7 +21,7 @@ public class StatsOnSubFolder {
 	/**
 	 * This method makes the computation of the statistic, analyzing the type and path of every shared file
 	 * @param sharedLinks the ArrayList of SharedFile which contains all the shared files
-	 * @return an HashMap<K, V>, with K=path of the folder, V=number of links inside the folder
+	 * @return an HashMap&#60;K, V&#62;, with K=path of the folder, V=number of links inside the folder
 	 */
 	public static HashMap<Path, Integer> getStatsOnFolder(ArrayList<SharedFile> sharedLinks) {
 		HashMap<Path, Integer> subfolderNumberLinks = new HashMap<>(); //Path: folder path, Integer:number of shared links in the path

@@ -10,11 +10,11 @@ import java.util.HashMap;
  */
 public class FileType{
 	/**
-	 * An HashMap<K,V> with K=type of the file, V=number of shared files with that type
+	 * An HashMap&#60;K,V&#62; with K=type of the file, V=number of shared files with that type
 	 */
 	public HashMap<String, Integer> sharedLinksType;
 	/**
-	 * An HashMap<K1,V1> with K1=name of the folder with a shared link, V1=HashMap<K2,V2> with
+	 * An HashMap&#60;K1,V1&#62; with K1=name of the folder with a shared link, V1=HashMap&#60;K2,V2&#62; with
 	 * K2=extension of the file contained in the folder, V2=number of files with that extension inside the folder
 	 */
 	public HashMap<String, HashMap<String, Integer>> subfolderFileType;

@@ -7,7 +7,7 @@ import it.univpm.esameOOP.utility.GetFileFromJSON;
 import java.util.Iterator;
 
 /**
- * This class calls {@link GetFileFromJSON.getFile} and {@link GetFileFromJSON.getFile(Path folderName)}
+ * This class calls {@link it.univpm.esameOOP.utility.GetFileFromJSON#getFile()} and {@link it.univpm.esameOOP.utility.GetFileFromJSON#getFile(java.nio.file.Path)}
  * to get all the public files from a Dropbox account (directly shared or indirectly accessible files)
  * @author Pilone Fabrizio
  * @author Sprecacè Alexia

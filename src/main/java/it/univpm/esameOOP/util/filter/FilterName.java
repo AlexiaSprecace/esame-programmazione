@@ -19,18 +19,18 @@ public class FilterName extends Filter {
 	/**
 	 * The constructor of the class
 	 * @param parameter The parameter of the filter, an Object which is checked to see if it's a String
-	 * @throw IllegalParameterException the parameter of the filter is not correct
+	 * @throws IllegalParameterException the parameter of the filter is not correct
 	 */
-	public FilterName (Object parameter) {
+	public FilterName (Object parameter) throws IllegalParameterException{
 		if (parameter instanceof String) 
 			this.parameter = (String) parameter;
 		else throw new IllegalParameterException("The parameter must be a string!");
 		}
 	
 	/**
-	 * Override of the {@link Filter.doFilter}, which checks if the file path contains the name of the 
+	 * Override of the {@link it.univpm.esameOOP.util.other.Filter#doFilter(SharedFile)}, which checks if the file path contains the name of the 
 	 * folder passed as a parameter of the constructor
-	 * @param the file to filter
+	 * @param file the file to filter
 	 * @return true if the file is in the specified folder, false otherwise
 	 */
 	public boolean doFilter (SharedFile file) {

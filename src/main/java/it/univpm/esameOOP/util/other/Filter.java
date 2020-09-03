@@ -20,7 +20,7 @@ public class Filter {
 	 * @param file the file to filter
 	 * @return true if the file comply with the filter, for the generic filter, if it has not been
 	 * specialized throws an exception
-	 * @throw IllegalParameterException() the parameter is not correct
+	 * @throws IllegalParameterException the parameter is not correct
 	 */
 	public boolean doFilter (SharedFile file) throws IllegalParameterException {
 		throw new IllegalParameterException();

@@ -32,7 +32,7 @@ public class GetFileFromJSON {
 		}
 		
 		/**
-		 * This method calls the {@link GetJSONFromURL.getJSON(Path folderName)} and saves the files inside 
+		 * This method calls the @link it.univpm.esameOOP.utility#GetJSONFromURL.getJSON(java.nio.file.Path) and saves the files inside 
 		 * the folder into an ArrayList (the json has name="entries" and value=JSONArray 
 		 * @param folderName the path of the folder to parse
 		 * @return the ArrayList with all the files inside the specified folder
@@ -44,7 +44,7 @@ public class GetFileFromJSON {
 		
 		/**
 		 * This method parses the JSONArray into and ArrayList of SharedFiles
-		 * @see SharedFiles
+		 * @see it.univpm.esameOOP.model.SharedFile
 		 * @param array the JSONArray got from the {@link getFile()} or {@link getFile(Path folderName)}
 		 * @param api an integer used to indicate which Dropbox api has been used: 1 for shared_links, 
 		 * 2 for list_folder, it affects the way the object gets parsed

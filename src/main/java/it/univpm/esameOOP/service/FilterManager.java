@@ -26,11 +26,11 @@ import it.univpm.esameOOP.util.other.Filter;
 public class FilterManager {
 	
 	/**
-	 * This method manages the filters parsing the correct json
+	 * This method manages the filters parsing the correct filter json, and applying the filter on the data set
 	 * @param filterBody Is the body sent in the POST request, it has a specific format and contains all the requested informations for the filter
 	 * @return an ArrayList containing all the files that satisfy the filters
-	 * @throws IllegalParameterException
-	 * @throws IllegalBodyException
+	 * @throws IllegalParameterException the parameter of the filter is not correct
+	 * @throws IllegalBodyException the body is not formatted in the proper way
 	 * @see IllegalParameterException
 	 * @see IllegalBodyException
 	 */
@@ -96,9 +96,9 @@ public class FilterManager {
 	/**
 	 * This method identify the requested filter and gives back the correct filter object
 	 * @param filterParameter the parameter of the filter (ex. name or extension)
-	 * @param filterValue the value of the filter (ex. "<folderName<" or ".txt")
+	 * @param filterValue the value of the filter (ex. \"folderName\" or \".txt\")
 	 * @return	the correct filter object (ex. filterName or filterExtension)
-	 * @throws IllegalParameterException
+	 * @throws IllegalParameterException the parameter of the filter is not correct
 	 */
 	private static Filter filterIdentification(String filterParameter, String filterValue)
 	throws IllegalParameterException{
