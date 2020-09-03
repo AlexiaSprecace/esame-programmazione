@@ -20,34 +20,49 @@ import java.util.HashMap;
 
 @RestController
 public class Controller {
-	@GetMapping(value= "/data")
-	public ResponseEntity<Object> getAllSharedFiles(){
+	@GetMapping(value = "/data")
+	public ResponseEntity<Object> getAllSharedFiles() {
 		return new ResponseEntity<>(AllPublicFiles.getAllFiles(), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/stats/type")
-	public ResponseEntity<Object> getStatsOnType(){
+	public ResponseEntity<Object> getStatsOnType() {
 		ArrayList<SharedFile> files = AllPublicFiles.getAllFiles();
 		return new ResponseEntity<>(StatsOnType.getStatsOnType(files), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/stats/folder")
-	public ResponseEntity<Object> getStatsOnFolder(){
+	public ResponseEntity<Object> getStatsOnFolder() {
 		ArrayList<SharedFile> files = AllPublicFiles.getAllFiles();
 		return new ResponseEntity<>(StatsOnSubFolder.getStatsOnFolder(files), HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/data")
-	public ResponseEntity<Object> getFilteredData(@RequestBody JSONObject filter) throws IllegalParameterException, IllegalBodyException{
-		return new ResponseEntity<>(FilterManager.filterManager(filter), HttpStatus.OK);
+	public ResponseEntity<Object> getFilteredData(@RequestBody(required = false) JSONObject filter)
+			throws IllegalParameterException, IllegalBodyException {
+		if (filter == null)
+			return getAllSharedFiles();
+		else
+			return new ResponseEntity<>(FilterManager.filterManager(filter), HttpStatus.OK);
 	}
+
 	@PostMapping("/stats/type")
-	public ResponseEntity<Object> getStatsOnType(@RequestBody JSONObject filter) throws IllegalParameterException, IllegalBodyException{
-		return new ResponseEntity<>(StatsOnType.getStatsOnType(FilterManager.filterManager(filter)), HttpStatus.OK);
+	public ResponseEntity<Object> getStatsOnType(@RequestBody(required = false) JSONObject filter)
+			throws IllegalParameterException, IllegalBodyException {
+		if (filter == null)
+			return getStatsOnType();
+		else
+			return new ResponseEntity<>(StatsOnType.getStatsOnType(FilterManager.filterManager(filter)), HttpStatus.OK);
 	}
+
 	@PostMapping("/stats/folder")
-	public ResponseEntity<Object> getStatsOnFolder(@RequestBody JSONObject filter) throws IllegalParameterException, IllegalBodyException{
-		return new ResponseEntity<>(StatsOnSubFolder.getStatsOnFolder(FilterManager.filterManager(filter)), HttpStatus.OK);
+	public ResponseEntity<Object> getStatsOnFolder(@RequestBody(required = false) JSONObject filter)
+			throws IllegalParameterException, IllegalBodyException {
+		if (filter == null)
+			return getStatsOnFolder();
+		else
+			return new ResponseEntity<>(StatsOnSubFolder.getStatsOnFolder(FilterManager.filterManager(filter)),
+					HttpStatus.OK);
 	}
-	
+
 }

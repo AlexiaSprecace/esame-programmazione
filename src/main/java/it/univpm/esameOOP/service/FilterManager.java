@@ -39,21 +39,30 @@ public class FilterManager {
 		ArrayList<SharedFile> filteredData = new ArrayList<>();
 		ArrayList<String> filterParameters;
 		ArrayList<String> filterValues;
-		ArrayList<?> array = (ArrayList<?>)filterBody.get("filter");	//ArrayList containg the filters
+		ArrayList<?> array;
+		Object body = (Object)filterBody.get("filter");	//ArrayList containg the filters
+		if ( body instanceof ArrayList<?>)
+			array = (ArrayList<?>) body;
+		else 
+			throw new IllegalBodyException("The filter value must be an array");
 		String operator="";
 		boolean flag=false;
 		HashMap<String, String> filterMap = new HashMap<>();
 		
-		if(array == null)	//the json was bad formatted or the filter was empty
+		if(array == null)     //the json was bad formatted 
 			throw new IllegalBodyException("The json must be \"filter: \" \"<filters<\"");
+		else if (array.isEmpty()) 
+			throw new IllegalParameterException("The filter can't be empty");
+			
 		Filter filter = new Filter();
-		
 		Iterator<?> it = array.iterator();
 		while(it.hasNext()) {
 			filterMap = (HashMap<String, String>)it.next();	//HashMap of the filter
 			filterParameters = new ArrayList<>(filterMap.keySet());
 			filterValues = new ArrayList<>(filterMap.values());
 			
+			if (filterParameters.size() == 0 || filterParameters.size() > 2)
+				throw new IllegalBodyException("There are no parameters");
 			if(!filterParameters.get(0).equals("name") && !filterParameters.get(0).equals("extension"))	//none of the two filters are requested (Bad Request)
 				throw new IllegalParameterException("Filter parameter must be \"name\" or \"extension\"");
 			if(filterParameters.size()>1 && !filterParameters.get(1).equals("operator"))	//there are more than 1 filter but they are not correctly interlocked
@@ -86,6 +95,8 @@ public class FilterManager {
 					flag=false;
 				else throw new IllegalParameterException("The conditional operator must"
 						+ " be \"and\"/\"or\"");
+				if (!it.hasNext()) 
+					throw new IllegalBodyException ("After a conditional operator there must be another filter-object ");
 			}
 			
 		}
