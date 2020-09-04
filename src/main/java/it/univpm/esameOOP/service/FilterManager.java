@@ -30,7 +30,7 @@ public class FilterManager {
 	 * @param filterBody Is the body sent in the POST request, it has a specific format and contains all the requested informations for the filter
 	 * @return an ArrayList containing all the files that satisfy the filters
 	 * @throws IllegalParameterException the parameter of the filter is not correct
-	 * @throws IllegalBodyException the body is not formatted in the proper way
+	 * @throws IllegalBodyException the body of the filter is not formatted in the proper way
 	 * @see IllegalParameterException
 	 * @see IllegalBodyException
 	 */
