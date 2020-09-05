@@ -54,7 +54,7 @@ public class Controller {
 	/** 
 	 * Route to calculate the statistic on the quantity of shared links per sub-folder in a Dropbox account
 	 * 
-	 * @return HashMap<K,V> with K = path of the shared folder, V = number of shared links in the folder
+	 * @return HashMap&#60;K,V&#62; with K = path of the shared folder, V = number of shared links in the folder
 	 */
 	@GetMapping("/stats/folder")
 	public HashMap<Path, Integer> getStatsOnFolder() {
@@ -100,7 +100,7 @@ public class Controller {
 	 * Route to perform {@link it.univpm.esameOOP.controller.Controller#getStatsOnFolder()} but with filtered data
 	 * 
 	 * @param filter The filter of the data
-	 * @return HashMap<K,V> with K = path of the shared folder, V = number of shared links in the folder (considering filtered data)
+	 * @return HashMap&#60;K,V&#62; with K = path of the shared folder, V = number of shared links in the folder (considering filtered data)
 	 * @throws IllegalParameterException the parameter of the filter is not correct
 	 * @throws IllegalBodyException the body of the filter is not formatted in the proper way
 	 */

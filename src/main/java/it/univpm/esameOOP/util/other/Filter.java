@@ -23,6 +23,6 @@ public class Filter {
 	 * @throws IllegalParameterException the parameter is not correct
 	 */
 	public boolean doFilter (SharedFile file) throws IllegalParameterException {
-		throw new IllegalParameterException();
+		throw new IllegalParameterException("Filter parameters are not correct");
 	}
 }

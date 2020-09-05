@@ -9,7 +9,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.univpm.esameOOP.exception.IllegalBodyException;
 import it.univpm.esameOOP.exception.IllegalParameterException;
 import it.univpm.esameOOP.service.FilterManager;
 
@@ -62,4 +61,16 @@ class FilterParametersTest {
 		}
 	}
 	
+	@Test
+	void test4() {     // Invalid filter value
+		String body = " {\"filter\":[{\"shared\":\"example\"}]}";
+		JSONObject bodyFilter ;
+		try {
+			bodyFilter = (JSONObject) JSONValue.parseWithException(body);
+			assertThrows(IllegalParameterException.class, ()->FilterManager.filterManager(bodyFilter));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

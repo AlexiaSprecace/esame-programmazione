@@ -4,20 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univpm.esameOOP.exception.IllegalBodyException;
 import it.univpm.esameOOP.exception.IllegalParameterException;
 import it.univpm.esameOOP.model.SharedFile;
 import it.univpm.esameOOP.util.filter.FilterExtension;
+import it.univpm.esameOOP.util.filter.FilterLink;
 import it.univpm.esameOOP.util.filter.FilterName;
 import it.univpm.esameOOP.util.other.Filter;
 
 /**
- * This class manages all the filters that can be used for the datas and the stats. The filter is sent as a
+ * This class manages all the filters that can be used for the data and the stats. The filter is sent as a
  * well formatted json, it gets parsed and then performed
  * @author Pilone Fabrizio
  * @author Sprecacè Alexia
@@ -38,16 +36,16 @@ public class FilterManager {
 		ArrayList<SharedFile> rawData = AllPublicFiles.getAllFiles();
 		ArrayList<SharedFile> filteredData = new ArrayList<>();
 		ArrayList<String> filterParameters;
-		ArrayList<String> filterValues;
+		ArrayList<Object> filterValues;
 		ArrayList<?> array;
-		Object body = (Object)filterBody.get("filter");	//ArrayList containg the filters
+		Object body = (Object)filterBody.get("filter");	//ArrayList containing the filters
 		if ( body instanceof ArrayList<?>)
 			array = (ArrayList<?>) body;
 		else 
 			throw new IllegalBodyException("The filter value must be an array");
 		String operator="";
 		boolean flag=false;
-		HashMap<String, String> filterMap = new HashMap<>();
+		HashMap<String, Object> filterMap = new HashMap<>();
 		
 		if(array == null)     //the json was bad formatted 
 			throw new IllegalBodyException("The json must be \"filter: \" \"<filters<\"");
@@ -57,14 +55,12 @@ public class FilterManager {
 		Filter filter = new Filter();
 		Iterator<?> it = array.iterator();
 		while(it.hasNext()) {
-			filterMap = (HashMap<String, String>)it.next();	//HashMap of the filter
+			filterMap = (HashMap<String, Object>)it.next();	//HashMap of the filter
 			filterParameters = new ArrayList<>(filterMap.keySet());
 			filterValues = new ArrayList<>(filterMap.values());
 			
 			if (filterParameters.size() == 0 || filterParameters.size() > 2)
 				throw new IllegalBodyException("There are no parameters");
-			if(!filterParameters.get(0).equals("name") && !filterParameters.get(0).equals("extension"))	//none of the two filters are requested (Bad Request)
-				throw new IllegalParameterException("Filter parameter must be \"name\" or \"extension\"");
 			if(filterParameters.size()>1 && !filterParameters.get(1).equals("operator"))	//there are more than 1 filter but they are not correctly interlocked
 				throw new IllegalParameterException("To interlock filters use \"operator\"");
 			
@@ -88,7 +84,7 @@ public class FilterManager {
 			}
 			
 			if(filterParameters.size()>1) {
-				operator = filterValues.get(1);
+				operator = (String)filterValues.get(1);
 				if(operator.equalsIgnoreCase("and"))
 					flag=true;
 				else if(operator.equalsIgnoreCase("or"))
@@ -111,7 +107,7 @@ public class FilterManager {
 	 * @return	the correct filter object (ex. filterName or filterExtension)
 	 * @throws IllegalParameterException the parameter of the filter is not correct
 	 */
-	private static Filter filterIdentification(String filterParameter, String filterValue)
+	private static Filter filterIdentification(String filterParameter, Object filterValue)
 	throws IllegalParameterException{
 		Filter filter = new Filter();
 		
@@ -121,7 +117,9 @@ public class FilterManager {
 		else if (filterParameter.equals("extension")) {
 			filter = new FilterExtension(filterValue);
 		}
-		else throw new IllegalParameterException("The filter must be \"name\" or \"extension\"");
+		else if (filterParameter.equals("shared")) {
+			filter = new FilterLink(filterValue);
+		}
 		return filter;
 	}
 }
