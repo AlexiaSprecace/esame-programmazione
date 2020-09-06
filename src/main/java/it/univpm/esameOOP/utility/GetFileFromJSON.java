@@ -74,6 +74,7 @@ public class GetFileFromJSON {
 						else if (api == 2)
 							file.setType("sub-folder"); // if it is from the list_folder, set the type to sub-folder
 					} else {
+						file.setSize((Long)obj.get("size"));
 						file.setType((String) obj.get("preview_type")); // if the file is not a folder, set the type
 						if (file.getType() == null)
 							file.setType("Not supported"); // if the file has no type (es. .class) set to not supported

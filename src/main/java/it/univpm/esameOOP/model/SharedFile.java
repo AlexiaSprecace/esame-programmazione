@@ -36,7 +36,10 @@ public class SharedFile {
 	 * boolean to know if the file is directly shared or indirectly accessible
 	 */
 	private boolean shared;
-	
+	/**
+	 * size of the file
+	 */
+	private long size;
 	/**
 	 * SharedFile constructor without parameters, it sets all to null
 	 */
@@ -47,6 +50,7 @@ public class SharedFile {
 		this.path=null;
 		this.tag = null;
 		this.shared = false;
+		this.size = 0;
 	}
 	
 	/**
@@ -57,16 +61,18 @@ public class SharedFile {
 	 * @param path path of the file
 	 * @param tag tag of the file
 	 * @param shared directly shared or indirectly accessible
+	 * @param size size of the file
 	 */
-	public SharedFile(String name, String extension, String type, String path, String tag, boolean shared) {
+	public SharedFile(String name, String extension, String type, String path, String tag, boolean shared,int size) {
 		this.name = name;
 		this.extension = extension;
 		this.type = type;
 		this.path = Paths.get(path);
 		this.tag = tag;
 		this.shared = shared;
+		this.size = size;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -103,7 +109,13 @@ public class SharedFile {
 	public void setShared(boolean shared) {
 		this.shared = shared;
 	}
-	
+	public long getSize() {
+		return size;
+	}
+
+	public void setSize(long size) {
+		this.size = size;
+	}
 	/**
 	 * Override of the toString method
 	 */

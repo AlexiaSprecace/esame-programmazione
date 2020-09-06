@@ -12,6 +12,8 @@ import it.univpm.esameOOP.model.SharedFile;
 import it.univpm.esameOOP.util.filter.FilterExtension;
 import it.univpm.esameOOP.util.filter.FilterLink;
 import it.univpm.esameOOP.util.filter.FilterName;
+import it.univpm.esameOOP.util.filter.FilterSizeGreater;
+import it.univpm.esameOOP.util.filter.FilterSizeLess;
 import it.univpm.esameOOP.util.other.Filter;
 
 /**
@@ -119,6 +121,18 @@ public class FilterManager {
 		}
 		else if (filterParameter.equals("shared")) {
 			filter = new FilterLink(filterValue);
+		}
+		else if (filterParameter.equals("size")) {
+			if (filterValue instanceof HashMap<?,?>) {
+			HashMap<String,Integer> temp = (HashMap<String,Integer>)filterValue;
+			ArrayList<String> temp2 = new ArrayList<>(temp.keySet());
+			String sizeOperator = temp2.get(0);
+			if (sizeOperator.equalsIgnoreCase("greater")) 
+				filter = new FilterSizeGreater(temp.get(sizeOperator));
+			else if (sizeOperator.equalsIgnoreCase("less"))
+				filter = new FilterSizeLess(temp.get(sizeOperator));
+			}
+			else throw new IllegalParameterException("The filter size must have an object as value (ex: {\"size\":{\"greater\":500}}");
 		}
 		return filter;
 	}
