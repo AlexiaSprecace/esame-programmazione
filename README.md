@@ -80,3 +80,17 @@ Operatore | Descrizione | Esempio di utilizzo
 name | Restituisce tutti i file con il nome considerato o all'interno di cartelle con il nome considerato | {"filter":[{"name":"esercizio parsing"}]}
 extension | Restituisce tutti i file con estensione ricercata | {"filter":[{"extension":".txt"}]}
 shared | Se true restituisce solo i file con link condiviso, se false restituisce tutti i file accessibili dall'esterno | {"filter":[{"shared":true}]}
+size | Restituisce tutti i file con dimensione maggiore (o minore) di un certo numero | {"filter":[{"size":{"greater":1000}}]}
+
+E' possibile concatenare più filtri attraverso gli operatori condizionali   `and`    e     `or`     ad esempio :
+```
+{
+    "filter" : [
+        { "name" : "esercizio parsing",
+          "operator" : "and" 
+## Diagrammi Uml
+### Diagramma dei casi d'uso
+},
+        { "extension" : ".java" }
+    ]
+}
