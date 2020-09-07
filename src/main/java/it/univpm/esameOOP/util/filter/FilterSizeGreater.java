@@ -4,6 +4,13 @@ import it.univpm.esameOOP.exception.IllegalParameterException;
 import it.univpm.esameOOP.model.SharedFile;
 import it.univpm.esameOOP.util.other.Filter;
 
+/**
+ * This class is the implementation of {@link Filter} for the filter on file's size (greater)
+ * 
+ * @author Pilone Fabrizio
+ * @author Sprecacè Alexia
+ *
+ */
 public class FilterSizeGreater extends Filter {
 	/**
 	 * The parameter of the filter (a integer containing the size to filter)

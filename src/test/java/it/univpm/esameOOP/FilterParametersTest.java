@@ -13,15 +13,14 @@ import it.univpm.esameOOP.exception.IllegalBodyException;
 import it.univpm.esameOOP.exception.IllegalParameterException;
 import it.univpm.esameOOP.service.FilterManager;
 
+/**
+ * Testing class to check if a parameter-exception has been thrown correctly
+ * 
+ * @author Pilone Fabrizio
+ * @author Sprecacè Alexia
+ * 
+ */
 class FilterParametersTest {
-	/**
-	 * Testing class to check if a parameter-exception has been thrown correctly
-	 * 
-	 * @author Pilone Fabrizio
-	 * @author Sprecacè Alexia
-	 * 
-	 * @throws Exception
-	 */
 	@BeforeEach
 	void setUp() throws Exception {
 	}
