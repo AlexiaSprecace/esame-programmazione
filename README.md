@@ -88,9 +88,51 @@ E' possibile concatenare più filtri attraverso gli operatori condizionali   `an
     "filter" : [
         { "name" : "esercizio parsing",
           "operator" : "and" 
-## Diagrammi Uml
-### Diagramma dei casi d'uso
 },
         { "extension" : ".java" }
     ]
 }
+```
+
+ 
+
+## Diagrammi Uml
+### Diagramma dei casi d'uso
+
+ 
+
+<img src="uml/Casi%20d'uso.jpg" width="400">
+
+### Packages
+
+<img src="uml/Package%20Hierarchy.jpg" width="800">
+
+### Diagrammi delle classi
+
+#### it.univpm.esameOOP.utility
+
+<img src="uml/utility.jpg" width="700">
+
+#### it.univpm.esameOOP.service
+
+<img src="uml/service.jpg" width="700">
+
+#### it.univpm.esameOOP.model
+
+<img src="uml/model.jpg" width="300">
+
+#### it.univpm.esameOOP.util.stats
+
+<img src="uml/stats.jpg" width="700">
+
+#### it.univpm.esameOOP.util.filter
+
+<img src="uml/filter.jpg" width="1000">
+
+#### it.univpm.esameOOP.controller
+
+<img src="uml/controller.jpg" width="350">
+
+#### it.univpm.esameOOP.exception
+
+<img src="uml/exception.jpg" width="400">
