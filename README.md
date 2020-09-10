@@ -6,7 +6,7 @@ Progetto per l'esame di programmazione ad oggetti, Università Politecnica delle
 Il seguente progetto è un Web Service che permette ad un client (es. Postman) di interagire con Dropbox ed eseguire, mediante REST API di tipo GET e POST, operazioni come:
 * Visualizzare tutti i link condivisi in formato JSON
 * Ottenere statistiche su tali dati
-* Ottenere dati filtrati attarverso vari parametri
+* Ottenere dati filtrati attraverso vari parametri
 * Ottenere statistiche sui dati filtrati
 
 Avendo utilizzato il framework SpringBoot, è possibile avviare il programma da un normale ambiente di sviluppo, come Eclipse, utilizzando l'opzione "Run as: SpringBoot App" per far partire in automatico un server Tomcat sulla porta 8080.
@@ -24,11 +24,11 @@ I dati sono strutturati mediante una serie di campi:
 Tipo | Rotta | Funzione
 ---- | ---- | ----
 `GET` | /data | Restituisce tutti i file con link condiviso e, per le cartelle con link condiviso, i file all'interno di tali cartelle
-`GET` | /stats/type | Restituisce una statistica su tipo e quantità di file per tipo per i file con link condiviso, e su estensioni e quantità di estensioni per i file contenuti in cartelle condivise
-`GET` | /stats/folder | Restituisce una statistica sulla quantità di link condivisi per sottocartella, nel caso in cui un file si trovi in un percorso con cartelle condivise, il file sarà conteggiato nella cartella condivisa più vicina, in mancanza di cartelle condivise sarà conteggiato nella propria cartella
+`GET` | /stats/type | Restituisce una statistica su tipo e quantità di file per tipo (per i file con link condiviso), e su estensioni e quantità di estensioni (per i file contenuti in cartelle condivise)
+`GET` | /stats/folder | Restituisce una statistica sulla quantità di link condivisi per sottocartella: nel caso in cui un file si trovi in un percorso con cartelle condivise, il file sarà conteggiato nella cartella condivisa più vicina, in mancanza di cartelle condivise sarà conteggiato nella propria cartella
 `POST` | /data | Restituisce i file che soddisfano i requisiti del filtro utilizzato
 `POST` | /stats/type | Restituisce la statistica sul tipo dei file che soddisfano i requisiti del filtro utilizzato
-`POST` | /stats/folder | Restituisce la statistica sul tipo dei file che soddisfano i requisiti del filtro utilizzato
+`POST` | /stats/folder | Restituisce la statistica sulle sottocartelle per i file che soddisfano i requisiti del filtro utilizzato
 
 ### Esempi
 Un possibile esempio di risposta alla rotta `GET`    `/data` è:
