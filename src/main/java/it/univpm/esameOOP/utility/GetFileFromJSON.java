@@ -20,8 +20,8 @@ import it.univpm.esameOOP.model.SharedFile;
 
 public class GetFileFromJSON {
 	/**
-	 * This method calls the getJSON method of the GetJSONFromURL and saves the shared links inside an
-	 * ArrayList (the json has name="link" and value=JSONArray
+	 * This method calls {@link it.univpm.esameOOP.utility.GetJSONFromURL#getJSON()} and saves the shared links inside an
+	 * ArrayList (the json has name="link" and value=JSONArray)
 	 * @return the ArrayList with all the files with a shared link
 	 */
 		
@@ -32,8 +32,8 @@ public class GetFileFromJSON {
 		}
 		
 		/**
-		 * This method calls the @link it.univpm.esameOOP.utility#GetJSONFromURL.getJSON(java.nio.file.Path) and saves the files inside 
-		 * the folder into an ArrayList (the json has name="entries" and value=JSONArray 
+		 * This method calls the {@link it.univpm.esameOOP.utility.GetJSONFromURL#getJSON(java.nio.file.Path)} and saves the files inside 
+		 * the folder into an ArrayList (the json has name="entries" and value=JSONArray)
 		 * @param folderName the path of the folder to parse
 		 * @return the ArrayList with all the files inside the specified folder
 		 */

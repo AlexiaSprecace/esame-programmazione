@@ -10,11 +10,7 @@ import it.univpm.esameOOP.model.SharedFile;
  *
  */
 public class Filter {
-	/**
-	 * The parameter of the filter, a generic type Object
-	 */
-	protected Object parameter;
-	
+
 	/**
 	 * The method of the filter	
 	 * @param file the file to filter

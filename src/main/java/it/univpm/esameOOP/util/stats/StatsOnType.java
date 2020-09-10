@@ -62,7 +62,7 @@ public class StatsOnType {
 				
 				while(path != null && !folders.containsKey(path))	//search the first shared folder in the file's path
 					path = path.getParent();
-				if(path!=null)	//there is a shared folder in the file's path (the file has not a shared link)
+				if(path!=null && !file.getShared())	//there is a shared folder in the file's path (the file has not a shared link)
 					folderName = folders.get(path);	//continue at line 73
 				else { //if path==null the not-supported file is directly shared, it has no super-folder
 					if(!fileType.sharedLinksType.containsKey(file.getType())) {
