@@ -101,7 +101,7 @@ E' possibile concatenare più filtri attraverso gli operatori condizionali   `an
 
  
 
-<img src="uml/Casi%20d'uso.jpg" width="400">
+<img src="uml/Casi%20d'uso.jpg" width="600">
 
 ### Packages
 
@@ -136,3 +136,35 @@ E' possibile concatenare più filtri attraverso gli operatori condizionali   `an
 #### it.univpm.esameOOP.exception
 
 <img src="uml/exception.jpg" width="400">
+
+### Diagrammi delle sequenze 
+
+#### GET /data
+
+<img src="uml/GET _data.jpg" width="800">
+
+#### GET /stats/type
+
+<img src="uml/GET _stats_type.jpg" width="800">
+
+#### GET /stats/folder
+
+<img src="uml/GET stats_folder.jpg" width="800">
+
+#### POST /data
+
+<img src="uml/POST data.jpg" width="800">
+
+#### POST /stats/type
+
+<img src="uml/POST _stats_type.jpg" width="800">
+
+#### POST /stats/folder
+
+<img src="uml/POST _stats_folder.jpg" width="800">
+
+
+## Autori
+**Pilone Fabrizio** : https://github.com/fabriziopilone
+
+**Sprecacè Alexia** : https://github.com/AlexiaSprecace
